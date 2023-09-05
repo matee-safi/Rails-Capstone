@@ -13,4 +13,5 @@ body {
   background-color: #e3f2fd;
 }
 
-div.alert.alert-success, .alert-success { background-color: #6f00ff; }
+div.alert.alert-success,
+.alert-success { background-color: #6f00ff; }
