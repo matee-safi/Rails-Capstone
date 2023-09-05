@@ -1,14 +1,29 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Foods</h1>
+<div class="food-container">
 
-<div id="foods">
-  <% @foods.each do |food| %>
-    <%= render food %>
-    <p>
-      <%= link_to "Show this food", food %>
-    </p>
-  <% end %>
+<div class="new-food-container">
+<%= link_to "New food", new_food_path, class: "link-btn btn-hover"%>
 </div>
 
-<%= link_to "New food", new_food_path %>
+<% if @foods.empty? %>
+<p>No food</p>
+<% else %>
+<table class="table-container">
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Measurement Unit</th>
+      <th>Unit Price</th>
+      <th>Quantity</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @foods.each do |food| %>
+      <%= render food %>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+</div>
