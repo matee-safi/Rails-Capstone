@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :recipe_foods
   resources :recipes
-  resources :foods
+  resources :foods 
   resources :users
 
   get 'public_recipes', to: 'public_recipes#index'

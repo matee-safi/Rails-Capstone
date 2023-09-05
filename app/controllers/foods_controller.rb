@@ -11,7 +11,8 @@ class FoodsController < ApplicationController
 
   # GET /foods/new
   def new
-    @food = Food.new
+    @user = current_user
+    @food = @user.foods.new
   end
 
   # GET /foods/1/edit
@@ -19,16 +20,17 @@ class FoodsController < ApplicationController
 
   # POST /foods or /foods.json
   def create
-    @food = Food.new(food_params)
+    # @food = Food.new(food_params)
+    @food = current_user.foods.build(food_params)
 
-    respond_to do |format|
-      if @food.save
-        format.html { redirect_to food_url(@food), notice: 'Food was successfully created.' }
-        format.json { render :show, status: :created, location: @food }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
-      end
+    if @food.save
+      # Post successfully created
+      flash[:notice] = 'Food created successfully.'
+      redirect_to foods_path
+    else
+      # Handle validation errors
+      flash[:notice] = 'Food not created successfully.'
+      render :new
     end
   end
 
@@ -63,7 +65,8 @@ class FoodsController < ApplicationController
   end
 
   # Only allow a list of trusted parameters through.
+
   def food_params
-    params.fetch(:food, {})
+    params.require(:food).permit(:name, :measurement_unit, :price, :quantity)
   end
 end
