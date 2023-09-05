@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :recipe_foods
   resources :recipes
-  resources :foods
+  resources :foods 
   resources :users
 
   get 'public_recipes', to: 'public_recipes#index'
