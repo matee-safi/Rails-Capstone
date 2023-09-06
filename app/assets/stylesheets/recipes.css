@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.recipe-container {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+ 
+}
+
+.recipe-list {
+    width: 60%;
+    display: flex;
+    border: solid 2px #7e2e84;
+    gap: 20px;
+    padding: 6px 10px;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-recipe {
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+}
