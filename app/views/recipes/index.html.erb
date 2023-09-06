@@ -1,14 +1,11 @@
 <p style="color: green"><%= notice %></p>
+<%= stylesheet_link_tag 'recipes', media: 'all' %>
 
-<h1>Recipes</h1>
-
-<div id="recipes">
+<div class="recipe-container">
+ <div class="new-recipe">
+ <%= link_to "New recipe", new_recipe_path %>
+ </div>
   <% @recipes.each do |recipe| %>
     <%= render recipe %>
-    <p>
-      <%= link_to "Show this recipe", recipe %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New recipe", new_recipe_path %>
