@@ -9,7 +9,6 @@ class RecipesController < ApplicationController
   # GET /recipes/1 or /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
-
   end
 
   # GET /recipes/new
@@ -21,20 +20,20 @@ class RecipesController < ApplicationController
   def edit; end
 
   # POST /recipes or /recipes.json
-    def create
-      # @food = Food.new(food_params)
-      @recipe = current_user.recipes.build(recipe_params)
-  
-      if @recipe.save
-        # Post successfully created
-        flash[:notice] = 'Recipe created successfully.'
-        redirect_to recipes_path
-      else
-        # Handle validation errors
-        flash[:notice] = 'Recipe not created successfully.'
-        render :new
-      end
+  def create
+    # @food = Food.new(food_params)
+    @recipe = current_user.recipes.build(recipe_params)
+
+    if @recipe.save
+      # Post successfully created
+      flash[:notice] = 'Recipe created successfully.'
+      redirect_to recipes_path
+    else
+      # Handle validation errors
+      flash[:notice] = 'Recipe not created successfully.'
+      render :new
     end
+  end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
   def update
@@ -50,7 +49,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    redirect_to recipes_path, notice: 'Comment was successfully deleted.'
+    redirect_to recipes_path, notice: 'Recipe was successfully deleted.'
   end
 
   private
