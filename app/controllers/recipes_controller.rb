@@ -7,7 +7,9 @@ class RecipesController < ApplicationController
   end
 
   # GET /recipes/1 or /recipes/1.json
-  def show; end
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
 
   # GET /recipes/new
   def new
@@ -19,40 +21,35 @@ class RecipesController < ApplicationController
 
   # POST /recipes or /recipes.json
   def create
-    @recipe = Recipe.new(recipe_params)
+    # @food = Food.new(food_params)
+    @recipe = current_user.recipes.build(recipe_params)
 
-    respond_to do |format|
-      if @recipe.save
-        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe was successfully created.' }
-        format.json { render :show, status: :created, location: @recipe }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
-      end
+    if @recipe.save
+      # Post successfully created
+      flash[:notice] = 'Recipe created successfully.'
+      redirect_to recipes_path
+    else
+      # Handle validation errors
+      flash[:notice] = 'Recipe not created successfully.'
+      render :new
     end
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
   def update
-    respond_to do |format|
-      if @recipe.update(recipe_params)
-        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe was successfully updated.' }
-        format.json { render :show, status: :ok, location: @recipe }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
-      end
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(recipe_params)
+      redirect_to @recipe, notice: 'Recipe updated successfully.'
+    else
+      render :edit
     end
   end
 
   # DELETE /recipes/1 or /recipes/1.json
   def destroy
+    @recipe = Recipe.find(params[:id])
     @recipe.destroy
-
-    respond_to do |format|
-      format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to recipes_path, notice: 'Recipe was successfully deleted.'
   end
 
   private
@@ -64,6 +61,6 @@ class RecipesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def recipe_params
-    params.fetch(:recipe, {})
+    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
   end
 end
