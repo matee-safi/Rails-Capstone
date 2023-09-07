@@ -1,1 +1,15 @@
-<h1>Public Recipes</h1>
+<h1 class="text-center fw-bold">Public Recipes</h1>
+<div class="public-recipes">
+  <% @public_recipes.each do |recipe| %>
+    <div class="border shadow py-3 px-5 m-5 row bg-white">
+      <div class="col-5">
+        <h2 class="mb-3"><%= recipe.name %></h2>
+        <h3>By: <%= recipe.user.name %></h3>
+      </div>
+      <div class="col-7">
+        <p>Total food items: <%= @recipe_foods %></p>
+        <p>Total price: $<%= @recipe_foods %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
