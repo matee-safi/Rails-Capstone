@@ -1,1 +1,28 @@
-<h1>Shopping List</h1>
+<h1 class="fw-bold text-center">Shopping List</h1>
+
+<div class="">
+  <div class="d-flex justify-content-around py-5 h5">
+    <p>Amount of food items to buy: 3</p>
+    <p>Total value of food needed: $819</p>
+  </div>
+  <div class="d-flex justify-content-center">
+    <table class="table table-striped table-hover border w-75">
+      <thead>
+        <tr>
+          <th scope="col">Food</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%# <% @general_shopping_list.each do |food_item| %>
+          <tr>
+            <td><%= "food_item.name" %></td>
+            <td><%= "food_item.quantity" %></td>
+            <td><%= "food_item.price" %></td>
+          </tr>
+        <%# <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
