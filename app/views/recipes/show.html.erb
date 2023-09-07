@@ -1,13 +1,49 @@
+<%= stylesheet_link_tag 'recipes', media: 'all' %>
+<%= stylesheet_link_tag 'foods', media: 'all' %>
+
 <p style="color: green"><%= notice %></p>
-
-<%= render @recipe %>
-
-<% if can? :create, Food %>
-  <%= link_to 'Add New Food', new_food_path %>
-<% end %>
-
 <div>
  
 <%= link_to "Back to recipes", recipes_path %>
 
+</div>
+<div class="recipe-detail-container">
+<div class="details-container">
+<%= render @recipe %>
+<%= form_for @recipe, url: { action: :toggle_public }, method: :patch do |f| %>
+  <%= f.label :public, "Public" %>
+  <%= f.check_box :public, {}, true, false %>
+  <%= f.submit "Save", class: "save" %>
+<% end %>
+</div>
+
+<div class="btn-container">
+<% if can? :create, @recipe %>
+  <%= link_to 'Add New Food', new_food_path %>
+<% end %>
+</div>
+<hr/>
+
+<div class="food-container">
+<% if @foods.empty? %>
+<p>No food</p>
+<% else %>
+<table class="table-container">
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Measurement Unit</th>
+      <th>Unit Price</th>
+      <th>Quantity</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @foods.each do |food| %>
+    <%= render partial: 'foods/food', locals: { food: food } %>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+</div>
 </div>

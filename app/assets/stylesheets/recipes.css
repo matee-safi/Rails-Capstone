@@ -34,3 +34,31 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.recipe-detail-container {
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 10px;
+    
+}
+
+.details-container {
+    display: flex;
+    gap: 10px;
+    margin-left: 15rem;
+   
+}
+
+.save {
+    border: none;
+    padding: 2px 5px;
+    color: white;
+    background-color: #7e2e84;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+}
