@@ -9,6 +9,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1 or /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
+    @foods = Food.all
   end
 
   # GET /recipes/new
@@ -50,6 +51,12 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
     redirect_to recipes_path, notice: 'Recipe was successfully deleted.'
+  end
+
+  def toggle_public
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(public: !@recipe.public)
+    redirect_to @recipe, notice: 'Recipe was successfully updated.'
   end
 
   private

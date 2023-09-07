@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index,:new,:create,:show,:destroy]
   resources :foods 
   resources :users
-
+  patch 'recipes/:id/toggle_public', to: 'recipes#toggle_public', as: 'toggle_public'
   get 'public_recipes', to: 'public_recipes#index'
   get 'general_shopping_list', to: 'general_shopping_list#index'
 
