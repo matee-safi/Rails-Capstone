@@ -15,7 +15,6 @@ RSpec.describe 'food new view page', type: :system do
     Food.create(user_id: user.id, name: 'Food 3', measurement_unit: 'Killo', price: 5, quantity: 2)
   end
 
-
   describe 'show correct form for a user' do
     before(:example) do
       allow_any_instance_of(ActionController::Base).to receive(:current_user).and_return(user)
