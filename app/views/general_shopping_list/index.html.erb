@@ -1,6 +1,10 @@
 <h1 class="fw-bold text-center">Shopping List for <%= @recipe.name %></h1>
 
-
+<% if @shopping_list_array.empty? %>
+  <div class="d-flex justify-content-center m-5 p-5">
+    <p class="h3">No shopping needed, Let's get straight to cooking.</p>
+  </div>
+<% else %>
 <div class="d-flex justify-content-around py-5 h5">
   <p>Amount of food items to buy: <%= @counter  %></p>
   <p>Total value of food needed: $<%= @food_price %></p>
@@ -15,13 +19,14 @@
       </tr>
     </thead>
     <tbody>
-      <% @shopping_list_array.each do |food| %>
+      <% @shopping_list_array.each do |shopping_item| %>
         <tr>
-          <td><%= food[0] %></td>
-          <td><%= food[1] %></td>
-          <td><%= food[2] %></td>
+          <th><%= shopping_item[0] %></th>
+          <th><%= shopping_item[1] %></th>
+          <th>$<%= shopping_item[2] %></th>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+<% end %>

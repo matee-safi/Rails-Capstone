@@ -2,7 +2,7 @@ class GeneralShoppingListController < ApplicationController
   def index
     @user_foods = current_user.foods
     @recipe = Recipe.find_by(id: params[:recipe_id])
-    @recipe_ingredients = @recipe.foods
+    @recipe_ingredients = @recipe.recipe_foods
     @counter = 0
     @food_price = 0
     @shopping_list_array = []
