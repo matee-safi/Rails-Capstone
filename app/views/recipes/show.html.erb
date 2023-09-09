@@ -2,14 +2,13 @@
 <%= stylesheet_link_tag 'foods', media: 'all' %>
 
 <p style="color: green"><%= notice %></p>
-<div>
- 
-<%= link_to "Back to recipes", recipes_path %>
-
-</div>
-<div class="recipe-detail-container">
-<div class="details-container">
-<%= render @recipe %>
+<h1 class="text-center"><%= @recipe.name %></h2>
+<div class="d-flex justify-content-between px-5 py-3">
+  <div>
+    <p>Preparation time: <%= @recipe.preparation_time %> hour(s)</p>
+    <p>Cooking time: <%= @recipe.cooking_time %> minute(s)</p>
+    <p>Description: <%= @recipe.description %></p>
+  </div>
 <%= form_for @recipe, url: { action: :toggle_public }, method: :patch do |f| %>
   <%= f.label :public, "Public" %>
   <%= f.check_box :public, {}, true, false %>
@@ -17,33 +16,31 @@
 <% end %>
 </div>
 
-<div class="btn-container">
+<div class="d-flex justify-content-between p-3 pt-5">
 <% if can? :create, @recipe %>
-  <%= link_to 'Add New Food', new_food_path %>
+  <%= link_to 'Generate shopping list', general_shopping_list_path, class: "btn btn-success" %>
+  <%= link_to 'Add Ingredient', new_recipe_food_path, class: "btn btn-primary" %>
 <% end %>
 </div>
 <hr/>
 
-<div class="food-container">
-<% if @foods.empty? %>
-<p>No food</p>
-<% else %>
-<table class="table-container">
-  <thead>
-    <tr>
-      <th>Food</th>
-      <th>Measurement Unit</th>
-      <th>Unit Price</th>
-      <th>Quantity</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @foods.each do |food| %>
-    <%= render partial: 'foods/food', locals: { food: food } %>
-  <% end %>
-  </tbody>
-</table>
-<% end %>
-</div>
+  <div class="food-container">
+    <div class="food-header">
+      <h2>Ingredients</h2>
+    </div>
+    <table class="w-100">
+      <thead>
+        <tr>
+          <th>Food</th>
+          <th>Quantity</th>
+          <th>Value</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recipe.recipe_foods.each do |recipe_food| %>
+          <%= render recipe_food %>
+        <% end %>
+      </tbody>
+  </div>
 </div>
