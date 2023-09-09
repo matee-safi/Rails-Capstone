@@ -18,7 +18,7 @@
 
 <div class="d-flex justify-content-between p-3 pt-5">
 <% if can? :create, @recipe %>
-  <%= link_to 'Generate shopping list', general_shopping_list_path, class: "btn btn-success" %>
+  <%= button_to "Generate shopping list", general_shopping_list_path, params: { recipe_id: @recipe.id }, method: :get, class: "btn btn-primary" %>
   <%= link_to 'Add Ingredient', new_recipe_food_path, class: "btn btn-primary" %>
 <% end %>
 </div>
