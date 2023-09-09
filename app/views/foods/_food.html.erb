@@ -7,7 +7,8 @@
 <td><%= food.price %></td>
 <td><%= food.quantity %></td>
 <td>
-  <button class="delete-btn btn-hover">Delete</button>
+  <%= link_to 'Edit', edit_food_path(food) %>
+  <%= link_to 'Delete', @food, method: :delete, data: { confirm: 'Are you sure?' } %>
 </td>
 </tr>
 </div>
