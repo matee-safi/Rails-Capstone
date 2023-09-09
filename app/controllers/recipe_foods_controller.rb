@@ -16,7 +16,6 @@ class RecipeFoodsController < ApplicationController
 
   # GET /recipe_foods/1/edit
   def edit; end
-  
 
   # POST /recipe_foods or /recipe_foods.json
   def create
