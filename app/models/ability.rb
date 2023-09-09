@@ -6,7 +6,7 @@ class Ability
     can :delete, Recipe, user_id: user.id
     can :create, Recipe, user_id: user.id
     can :delete, Food, user_id: user.id
-    
+
     # Define abilities for the user here. For example:
     #
     #   return unless user.present?

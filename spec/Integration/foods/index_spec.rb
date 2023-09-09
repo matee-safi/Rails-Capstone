@@ -1,22 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe 'food new view page', type: :system do
-  let!(:user1) do
+  let!(:user) do
     User.create(name: 'test user', email: 'user@example.com', password: 'password', password_confirmation: 'password')
   end
 
   let!(:food1) do
-    Food.create(user_id: user1.id, name: 'Food 1', measurement_unit: 'Killo', price: 5, quantity: 2)
+    Food.create(user_id: user.id, name: 'Food 1', measurement_unit: 'Killo', price: 5, quantity: 2)
   end
   let!(:food2) do
-    Food.create(user_id: user1.id, name: 'Food 2', measurement_unit: 'Killo', price: 5, quantity: 2)
+    Food.create(user_id: user.id, name: 'Food 2', measurement_unit: 'Killo', price: 5, quantity: 2)
   end
   let!(:food3) do
-    Food.create(user_id: user1.id, name: 'Food 3', measurement_unit: 'Killo', price: 5, quantity: 2)
+    Food.create(user_id: user.id, name: 'Food 3', measurement_unit: 'Killo', price: 5, quantity: 2)
   end
+
 
   describe 'show correct form for a user' do
     before(:example) do
+      allow_any_instance_of(ActionController::Base).to receive(:current_user).and_return(user)
       visit foods_path
     end
 
