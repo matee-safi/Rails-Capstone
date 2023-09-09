@@ -32,7 +32,6 @@ RSpec.describe 'Recipe index view page', type: :system do
       expect(page).to have_content(recipe1.description)
     end
 
-
     it 'displays the recipe\'s name' do
       expect(page).to have_content(recipe2.name)
     end
@@ -40,7 +39,6 @@ RSpec.describe 'Recipe index view page', type: :system do
     it 'displays the recipe\'s description' do
       expect(page).to have_content(recipe2.description)
     end
-
 
     it 'displays the recipe\'s name' do
       expect(page).to have_content(recipe3.name)
