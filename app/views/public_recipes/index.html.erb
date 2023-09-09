@@ -4,7 +4,7 @@
     <% @public_recipes.each do |recipe| %>
       <div class="border shadow py-3 px-5 m-5 row bg-white">
         <div class="col-5">
-          <h2 class="mb-3"><%= recipe.name %></h2>
+          <a href = "<%= recipe_path(id: recipe.id) %>" class="mb-3"><h4><%= recipe.name %></h4></a>
           <h3>By: <%= recipe.user.name %></h3>
         </div>
         <div class="col-7">
